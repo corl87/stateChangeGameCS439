@@ -5,7 +5,7 @@ Continuing with the rocket theme I decided to make this game be the prequel to m
 
 I used twine to create my project because the demonstration of twine in class made a lot of sense to me
 
-In order to run the project, run the HTML file labeled "rocketStory" 
+In order to run the project, download and run the HTML file labeled "rocketStory" 
 
 Each node is in twine's database and was copied from the google sheets outline- attached
 
