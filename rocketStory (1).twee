@@ -1,0 +1,99 @@
+:: StoryTitle
+rocketStory
+
+
+:: StoryData
+{
+  "ifid": "72A69054-0CAB-49A4-9D5D-8055BADDC1E8",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "start",
+  "zoom": 1
+}
+
+
+:: askCorp {"position":"1025,1000","size":"100,100"}
+Submit your designs to big corporations looking to fund space travel
+
+(if:$knowledge is true)[[attemptLaunch]]
+
+(if:$knowledge is false)[[drawingBoard]] 
+
+
+:: attemptLaunch {"position":"450,875","size":"100,100"}
+You attempt to launch your rocket
+
+[[try again->diyRocket]]
+
+(if:$knowledge is true)[[win]]
+
+
+:: diyRocket {"position":"700,450","size":"100,100"}
+You attempt to built your rocket
+
+[[attemptLaunch]]
+[[drawingBoard]] 
+
+
+:: drawingBoard {"position":"775,600","size":"100,100"}
+You realize that building a rocket is hard and you probably cant do it yet
+
+[[workJob]]
+[[howToBuild]]
+
+
+:: getDegree {"position":"850,775","size":"100,100"}
+You spend money to gain knowledge, you draw up the designs of your dream rocket
+(set: $knowledge to True)
+[[askCorp]]
+[[workJob]] 
+
+
+:: howToBuild {"position":"925,625","size":"100,100"}
+You find that most rockets have been built by people with degrees
+
+[[getDegree]]
+[[searchInternet]]
+
+
+
+:: research {"position":"825,450","size":"100,100"}
+You realize that rockets are very expensive
+
+[[diyRocket]] 
+[[drawingBoard]]
+
+
+:: searchInternet {"position":"1125,725","size":"100,100"}
+Looking online you find data on previous sucessful rocket launches, but you need a lot of data to draw conclusions
+(set: $data to $data +1)
+(if:$data > 5)[[theAnswer]]
+
+[[askCorp]]
+[[find more data ->searchInternet]] 
+
+
+:: start {"position":"700,325","size":"100,100"}
+You really want to build your own rocket to go to space. You saved up 5000$ in high school to start.
+(set: $money to 5000)
+(set: $knowledge to False)
+(set: $data to 0)
+[[abc->diyRocket]]
+[[research]]
+
+
+:: theAnswer {"position":"1125,850","size":"100,100"}
+You draw up your own designs based on the designs you found online
+(set: $knowledge to true)
+[[askCorp]] 
+
+
+:: win {"position":"450,1000","size":"100,100"}
+You succesfully launch your rocket to space
+
+
+:: workJob {"position":"675,725","size":"100,100"}
+You work very hard and make 10,000$
+(set: $money to $money + 10000)
+[[workJob]] 
+[[diyRocket]] 
